@@ -188,7 +188,7 @@ services:
       - "traefik.http.middlewares.grafana-stripprefix.stripprefix.prefixes=/dashboard"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
       - "traefik.http.routers.grafana.entrypoints=websecure"
-      - "traefik.http.routers.grafana.tls.certresolver=myresolver"
+      - "traefik.http.routers.grafana.tls.certresolver=main-resolver"
       - "traefik.http.routers.grafana.rule=Host(`$QUERY_HOST`) && PathPrefix(`/dashboard`)"
       - "traefik.http.routers.grafana.middlewares=grafana-stripprefix"
 

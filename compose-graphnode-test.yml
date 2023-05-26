@@ -161,7 +161,7 @@ services:
       - "traefik.http.middlewares.query-node-gnosis-stripprefix.stripprefix.prefixes=/gnosis"
       - "traefik.http.services.query-node-gnosis.loadbalancer.server.port=8000"
       - "traefik.http.routers.query-node-gnosis.entrypoints=websecure"
-      - "traefik.http.routers.query-node-gnosis.tls.certresolver=myresolver"
+      - "traefik.http.routers.query-node-gnosis.tls.certresolver=main-resolver"
       - "traefik.http.routers.query-node-gnosis.rule=Host(`$QUERY_HOST`) && PathPrefix(`/gnosis`)"
       - "traefik.http.routers.query-node-gnosis.middlewares=query-node-gnosis-stripprefix"
 
