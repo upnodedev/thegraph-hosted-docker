@@ -332,6 +332,14 @@
           "interval": "",
           "legendFormat": "{{deployment}}",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "abs(deployment_head{instance=\"query-node-gnosis:8040\"} - on (network) group_left ethereum_chain_head_number{instance=\"query-node-gnosis:8040\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{deployment}}",
+          "refId": "query-node-gnosis"
         }
       ],
       "title": "Blocks behind over time",
