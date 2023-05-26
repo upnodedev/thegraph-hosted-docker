@@ -112,13 +112,13 @@ services:
 
 
 ######################################################################################
-#####################    QUERY NODE CONTAINER {{chainName}}    #######################
+#####################    QUERY NODE CONTAINER gnosis    #######################
 ######################################################################################
 
 
-  query-node-{{chainName}}:
+  query-node-gnosis:
     image: ${GRAPH_NODE_VERSION:-graphprotocol/graph-node:v0.31.0-rc.0}
-    container_name: query-node-{{chainName}}
+    container_name: query-node-gnosis
     depends_on:
       - postgres
     volumes:
@@ -132,7 +132,7 @@ services:
       postgres_db: ${GRAPH_NODE_DB_NAME:-graph-node}
       ipfs: '${IPFS_ENDPOINT:-https://ipfs.network.thegraph.com/ipfs/}'
       node_role: query-node
-      node_id: query_node_{{chainName}}
+      node_id: query_node_gnosis
       RUST_LOG: INFO
       GRAPH_LOG: INFO
       GRAPH_ETH_CALL_GAS: 50000000
@@ -142,7 +142,7 @@ services:
       GRAPH_KILL_IF_UNRESPONSIVE: "true"
       GRAPH_LOG_QUERY_TIMING: ${GRAPH_LOG_QUERY_TIMING:-gql}
       GRAPH_ALLOW_NON_DETERMINISTIC_FULLTEXT_SEARCH: ${FULLTEXT_SEARCH:-true}
-      ethereum: '{{ chainName }}:{{ archiveNodeUrl }}'
+      ethereum: '${CHAIN_NAME}:${ARCHIVE_NODE_URL}'
     restart: unless-stopped
     logging:
         driver: "journald"
@@ -156,7 +156,14 @@ services:
       - monitor-net
       - traefik_proxy
     labels:
-      - "traefik_template=name:graph-query-node-{{chainName}} port:8000 prefix:/{{chainName}}"
+      - "org.label-schema.group=monitoring"
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.query-node-gnosis-stripprefix.stripprefix.prefixes=/gnosis"
+      - "traefik.http.services.query-node-gnosis.loadbalancer.server.port=8000"
+      - "traefik.http.routers.query-node-gnosis.entrypoints=websecure"
+      - "traefik.http.routers.query-node-gnosis.tls.certresolver=myresolver"
+      - "traefik.http.routers.query-node-gnosis.rule=Host(`$QUERY_HOST`) && PathPrefix(`/gnosis`)"
+      - "traefik.http.routers.query-node-gnosis.middlewares=query-node-gnosis-stripprefix"
 
 
 ######################################################################################

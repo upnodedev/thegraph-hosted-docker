@@ -1,0 +1,1 @@
+docker compose -f compose-graphnode-test.yml -f compose-monitoring-test.yml up -d --build $@

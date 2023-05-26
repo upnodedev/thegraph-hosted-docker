@@ -1,0 +1,1 @@
+docker-compose -f compose-graphnode.yml -f compose-monitoring.yml up -d --build $@
