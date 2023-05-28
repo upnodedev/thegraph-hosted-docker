@@ -34,20 +34,15 @@ scrape_configs:
     static_configs:
       - targets: ['pushgateway:9091']
 
-  - job_name: 'index-node-0'
+  - job_name: 'query-node-mainnet'
     scrape_interval: 5s
     static_configs:
-      - targets: ['index-node-0:8040']
+      - targets: ['query-node-mainnet:8040']
 
-  - job_name: 'query-node-0'
+  - job_name: 'query-node-gnosis'
     scrape_interval: 5s
     static_configs:
-      - targets: ['query-node-0:8040']
-
-  - job_name: 'query-node-1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['query-node-1:8040']
+      - targets: ['query-node-gnosis:8040']
 
   - job_name: 'indexer-service'
     scrape_interval: 5s

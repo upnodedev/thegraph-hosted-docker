@@ -317,21 +317,11 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "abs(deployment_head{instance=\"index-node-0:8040\"} - on (network) group_left ethereum_chain_head_number{instance=\"index-node-0:8040\"})",
-          "format": "time_series",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{deployment}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "abs(deployment_head{instance=\"index-node-1:8040\"} - on (network) group_left ethereum_chain_head_number{instance=\"index-node-1:8040\"})",
+          "expr": "abs(deployment_head{instance=\"query-node-mainnet:8040\"} - on (network) group_left ethereum_chain_head_number{instance=\"query-node-mainnet:8040\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{deployment}}",
-          "refId": "B"
+          "refId": "A"
         },
         {
           "exemplar": true,
@@ -339,7 +329,7 @@
           "hide": false,
           "interval": "",
           "legendFormat": "{{deployment}}",
-          "refId": "query-node-gnosis"
+          "refId": "B"
         }
       ],
       "title": "Blocks behind over time",

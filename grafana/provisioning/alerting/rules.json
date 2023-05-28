@@ -22,7 +22,7 @@
               "datasourceUid": "P1809F7CD0C75ACF3",
               "model": {
                 "editorMode": "code",
-                "expr": "abs(deployment_head - on (network) group_left ethereum_chain_head_number{instance=\"index-node-0:8040\"})",
+                "expr": "abs(deployment_head - on (network) group_left ethereum_chain_head_number{instance=\"query-node-gnosis:8040\"})",
                 "hide": false,
                 "intervalMs": 1000,
                 "legendFormat": "__auto",
