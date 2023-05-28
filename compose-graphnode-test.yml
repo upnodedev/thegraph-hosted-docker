@@ -160,6 +160,7 @@ services:
     labels:
       - "org.label-schema.group=monitoring"
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
       - "traefik.http.middlewares.query-node-mainnet-stripprefix.stripprefix.prefixes=/mainnet"
       - "traefik.http.services.query-node-mainnet.loadbalancer.server.port=8000"
       - "traefik.http.routers.query-node-mainnet.entrypoints=websecure"
@@ -217,6 +218,7 @@ services:
     labels:
       - "org.label-schema.group=monitoring"
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
       - "traefik.http.middlewares.query-node-gnosis-stripprefix.stripprefix.prefixes=/gnosis"
       - "traefik.http.services.query-node-gnosis.loadbalancer.server.port=8000"
       - "traefik.http.routers.query-node-gnosis.entrypoints=websecure"
