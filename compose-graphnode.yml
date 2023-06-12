@@ -168,7 +168,7 @@ services:
   postgres:
     image: postgres:13.10
     container_name: postgres
-    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
+    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements", "-c", "hba_file=/var/lib/custom_pg_hba/pg_hba.conf"]
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USER:-graph-node}
@@ -178,6 +178,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres-socket:/var/run/postgresql
+      - ./pg_hba.conf:/var/lib/custom_pg_hba/pg_hba.conf
     networks:
       - monitor-net
     expose:
