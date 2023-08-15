@@ -173,7 +173,7 @@ services:
       - postgres_db=${GRAPH_NODE_DB_NAME:-graph-node}
       - GF_INSTALL_PLUGINS=fifemon-graphql-datasource
       - GF_SERVER_ROOT_URL=/dashboard
-      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_SERVE_FROM_SUB_PATH=false
       - subgraph_endpoint=${SUBGRAPH_ENDPOINT:-https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-goerli}
     restart: unless-stopped
     expose:
